@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todo-list-aa856": {
+      "hosting": {
+        "todoList": [
+          "todo-list-aa856"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todo-list-aa856"
+  }
+}
