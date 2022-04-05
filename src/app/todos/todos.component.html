@@ -1,0 +1,31 @@
+<div class=" todos-header center mb-mt-50">
+    <h1>Todos</h1>
+</div>
+
+<form class="todo-form">
+    <mat-form-field class="todo-title" appearance="fill">
+      <mat-label>Title</mat-label>
+      <input [(ngModel)]="todo.title" type="text" name="title" matInput  placeholder="Please add your Title">
+    </mat-form-field>
+
+    <mat-form-field class="todo-content" appearance="fill">
+        <mat-label>Discription</mat-label>
+        <input [(ngModel)]="todo.discription" type="text" name="discription" matInput  placeholder="Please add Todo discription">
+      </mat-form-field>
+
+      <button  type="submit" (click)="addTodo()" mat-mini-fab color="warn"><mat-icon>add</mat-icon></button>
+
+  </form>
+
+  <div class="all-todos" *ngFor="let todo of todos">
+    <mat-card class="todo-card">
+      <mat-card-title>{{todo.title}}</mat-card-title>
+      <mat-card-content>
+        <p>{{todo.discription}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button><mat-icon>test</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div> 

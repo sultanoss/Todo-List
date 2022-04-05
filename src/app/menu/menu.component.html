@@ -1,0 +1,12 @@
+<mat-toolbar class="toolbar" color="primary">
+    <button mat-icon-button>
+        <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
+    </button>
+    <span>My TODO App</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/">Home</button>
+    <button mat-menu-item routerLink="/todos">Todos</button>
+</mat-menu>
