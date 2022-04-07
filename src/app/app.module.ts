@@ -15,13 +15,14 @@ import { FooterComponent } from './footer/footer.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './login/login.component';
+import { HotToastModule } from '@ngneat/hot-toast';
+import { FirebaseApp, initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { Signup1Component } from './signup1/signup1.component';
 
 
 
@@ -31,7 +32,9 @@ import { environment } from '../environments/environment';
     MenuComponent,
     TodosComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    Signup1Component,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,11 @@ import { environment } from '../environments/environment';
     MatFormFieldModule,
     FormsModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideAuth(() => getAuth()),
+    HotToastModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
   providers: [],
   bootstrap: [AppComponent]

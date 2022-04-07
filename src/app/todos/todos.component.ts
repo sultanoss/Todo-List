@@ -17,13 +17,12 @@ export class TodosComponent implements OnInit {
 
   todos = [];
 
-  todoId = 'hAYP26HyhdPGr2r3p1Kz';
 
   constructor(private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
 
-    this.firestore.collection('todos').valueChanges({ idField: 'custumIdName' }).subscribe((changes: any) => {
+    this.firestore.collection('todos').valueChanges({ idField: 'customIdName' }).subscribe((changes: any) => {
       console.log('recieved changes from DB', changes);
       this.todos = changes;
     })
@@ -47,9 +46,8 @@ export class TodosComponent implements OnInit {
 
   }
 
-  deleteTodo(i: number) {
-    this.todos.splice(i, 1);
-    this.firestore.collection('todos').doc(this.todoId).delete();
+  deleteTodo(todo:any) {
+    this.firestore.collection('todos').doc(todo['customIdName']).delete();
   }
 }
 

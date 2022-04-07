@@ -1,0 +1,41 @@
+
+<div class="form-container mat-elevation-z5">
+    <h1>Sign up a new User</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+
+        <mat-form-field>
+            <input matInput placeholder="Your name" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Email Address" formControlName="email">
+            <mat-error *ngIf="email?.errors?.['email']"> Please enter a correct email format </mat-error>
+        </mat-form-field>
+       
+
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" type="password">
+            <mat-error *ngIf="password?.errors?.['required']"> Password ist repuired </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="confirmPassword" formControlName="confirmPassword" type="password">
+            <mat-error *ngIf="confirmPassword?.errors?.['required']"> Confirm Password ist repuired </mat-error>
+        </mat-form-field>
+
+        <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+            Passwords should match.
+        </mat-error>
+
+        <div class="center margin-top">
+            <button mat-raised-button color="primary" type="submit">Sign Up</button>
+        </div>
+        
+    </form>
+
+    <div class="center margin-top">
+        <button mat-raised-button color="accent" routerLink="/"> Login </button>
+    </div>
+
+</div>
+
