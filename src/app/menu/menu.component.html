@@ -1,12 +1,25 @@
 <mat-toolbar class="toolbar" color="primary">
-    <button mat-icon-button>
-        <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
-    </button>
-    <span>My TODO App</span>
-    <span class="example-spacer"></span>
+
+    <div class="toolbar-menu-btn"> 
+        <button *ngIf="authService.currentUser$ | async as user" mat-icon-button>
+            <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
+        </button>
+    
+        <span>My TODO App</span>
+        <span class="example-spacer"></span>
+    </div>
+  
+
+    <ng-container *ngIf="authService.currentUser$ | async as user";loginButton>
+        <button mat-button (click)="logout()">
+          <mat-icon>account_circle</mat-icon>
+          Logout
+        </button>
+      </ng-container>
+
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/">Home</button>
-    <button mat-menu-item routerLink="/todos">Todos</button>
+    <button *ngIf="authService.currentUser$ | async as user" mat-menu-item routerLink="/">Home</button>
+    <button *ngIf="authService.currentUser$ | async as user" mat-menu-item routerLink="/todos">Todos</button>
 </mat-menu>
