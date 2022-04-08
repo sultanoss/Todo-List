@@ -1,0 +1,27 @@
+
+<div class="todos-container mb-mt-50">
+
+    <div class="form">
+  
+      <form class="todo-form mb-mt-50">
+        <mat-form-field class="todo-title" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input class="title-input" [(ngModel)]="todo.title" type="text" name="title" matInput
+            placeholder="Please add your Title">
+        </mat-form-field>
+  
+        <mat-form-field class="todo-content" appearance="fill">
+          <mat-label>Discription</mat-label>
+  
+          <textarea class="text-input" [(ngModel)]="todo.discription" type="text" name="discription" matInput
+            placeholder="Please add Todo Discription">
+           </textarea>
+        </mat-form-field>
+  
+        <button type="submit" (click)="saveTodo(todo)" mat-raised-button color="primary">
+          <mat-icon>save</mat-icon>
+        </button>
+  
+      </form>
+  
+    </div>

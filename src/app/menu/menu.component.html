@@ -20,6 +20,6 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-    <button *ngIf="authService.currentUser$ | async as user" mat-menu-item routerLink="/">Home</button>
+    <button *ngIf="authService.currentUser$ | async as user" mat-menu-item routerLink="/home">Home</button>
     <button *ngIf="authService.currentUser$ | async as user" mat-menu-item routerLink="/todos">Todos</button>
 </mat-menu>

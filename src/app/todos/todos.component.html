@@ -1,6 +1,3 @@
-<!-- <div class=" todos-header center mb-mt-50">
-    <h1>Todos</h1>
-</div> -->
 
 <div class="todos-container mb-mt-50">
 
@@ -30,13 +27,17 @@
   </div>
 
   <div class="all-todos mb-mt-50">
-    <div class="todo-container"  *ngFor="let todo of todos ;let i = index ">
+    <div class="todo-container"  *ngFor="let todo of todos">
       <mat-card class="todo-card">
         <mat-card-title><span>{{todo.title}}</span></mat-card-title>
         <mat-card-content>
           <p>{{todo.discription}}</p>
         </mat-card-content>
       </mat-card>
+
+      <button mat-button (click)="editTodo(todo)">
+       <mat-icon>edit</mat-icon>
+      </button>
       <button class="delete-btn" mat-button (click)="deleteTodo(todo)">
         <mat-icon>delete</mat-icon>
       </button>

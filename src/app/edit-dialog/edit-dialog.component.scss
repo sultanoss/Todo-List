@@ -1,0 +1,114 @@
+.todos-header {
+    color: white;
+}
+
+
+
+.todo-btns {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+
+    button {
+        margin-right: 20px;
+    }
+}
+
+
+.todo-form {
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 2px solid white;
+    border-radius: 16px;
+    padding: 16px;
+    height: 342px;
+    width: 500px;
+
+    button {
+
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+    }
+}
+
+
+.todo-content {
+
+    color: white;
+}
+
+.title-input {
+    height: 30px;
+    color: white;
+}
+
+.text-input{
+
+    height:150px;
+}
+
+mat-label {
+
+    font-size: 18px;
+
+}
+
+.all-todos{
+
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    mat-card-title{
+
+        margin-bottom: 16px;
+    }
+}
+
+textarea{
+    margin-top: 20px !important;
+    resize:none !important;
+}
+
+.form{
+
+    display: flex;
+    justify-content: center;
+}
+
+.todos-container{
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+}
+
+.todo-card{
+
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 150px;
+    word-break: break-all;
+
+    span{
+        color: #f44336;
+        text-align: center;
+    }
+}
+
+.todo-container{
+
+    margin: 10px;
+    background-color: #c2185b;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+

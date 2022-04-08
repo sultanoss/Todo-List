@@ -23,6 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { FirebaseApp, initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { Signup1Component } from './signup1/signup1.component';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -35,6 +37,7 @@ import { Signup1Component } from './signup1/signup1.component';
     FooterComponent,
     LoginComponent,
     Signup1Component,
+    EditDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { Signup1Component } from './signup1/signup1.component';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatDialogModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

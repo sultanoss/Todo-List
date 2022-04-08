@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentification.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthenticationService } from '../services/authentification.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public authService:AuthenticationService,) { }
+  constructor(public authService:AuthenticationService,public route:Router) { }
 
   ngOnInit(): void {
   }

@@ -10,6 +10,7 @@ const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'todos',component:TodosComponent},
   {path:'signup',component:Signup1Component},
+  {path:'home',component:HomeComponent},
 
 ];
 

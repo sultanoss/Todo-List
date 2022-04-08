@@ -2,4 +2,4 @@
     <h1>My ToDo App</h1>
 </div>
 
-<app-login></app-login>
+<app-login *ngIf="route.url != '/home'"></app-login>

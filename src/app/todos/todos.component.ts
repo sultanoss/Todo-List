@@ -3,6 +3,8 @@ import { Todo } from 'src/models/todo.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ref } from 'firebase/database';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 
 @Component({
@@ -17,8 +19,10 @@ export class TodosComponent implements OnInit {
 
   todos = [];
 
+  currentTodo:Todo = new Todo()
 
-  constructor(private firestore: AngularFirestore) { }
+
+  constructor(private firestore: AngularFirestore, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -46,8 +50,21 @@ export class TodosComponent implements OnInit {
 
   }
 
-  deleteTodo(todo:any) {
+  deleteTodo(todo: any) {
     this.firestore.collection('todos').doc(todo['customIdName']).delete();
+  }
+
+
+  editTodo(todo:any) {
+
+    this.firestore.collection('todos').doc(todo['customIdName'])
+    .valueChanges().subscribe((currentUser: any) => {
+      this.currentTodo = new Todo(currentUser);
+      console.log('abgerufene todo', this.currentTodo);
+    });
+    const dialog = this.dialog.open(EditDialogComponent);
+    dialog.componentInstance.todo = new Todo(this.currentTodo.toJson());
+    dialog.componentInstance.todo['customIdName'] = this.todo['customIdName'];
   }
 }
 
