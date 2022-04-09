@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/models/todo.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ref } from 'firebase/database';
-import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 
@@ -63,7 +61,7 @@ export class TodosComponent implements OnInit {
       console.log('abgerufene todo', this.currentTodo);
     });
     const dialog = this.dialog.open(EditDialogComponent);
-    dialog.componentInstance.todo = new Todo(this.currentTodo.toJson());
+    dialog.componentInstance.todo = todo;
     dialog.componentInstance.todo['customIdName'] = this.todo['customIdName'];
   }
 }
