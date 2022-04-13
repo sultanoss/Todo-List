@@ -20,12 +20,13 @@
       <mat-form-field appearance="fill">
         <mat-label>Todo Date</mat-label>
         <input [(ngModel)]="todo.date" name="date" matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <button type="submit" (click)="addTodo()" mat-raised-button color="primary">
+      <button type="submit" (click)="addTodo()" mat-raised-button color="primary" #tooltip="matTooltip"
+        matTooltip="Create Todo">
         <mat-icon>add</mat-icon>
       </button>
 
@@ -43,7 +44,7 @@
         <mat-label>Title</mat-label>
         <input [(ngModel)]="searchedTodo" type="text" name="title" matInput placeholder="Please add your Title">
       </mat-form-field>
-      <button mat-button color="primary" (click)="searchTodo()">
+      <button mat-button color="primary" (click)="searchTodo()" #tooltip="matTooltip" matTooltip="search Todo by Title">
         <mat-icon>search</mat-icon>
       </button>
       <button mat-button color="primary" (click)="cancelSearch()" #tooltip="matTooltip" matTooltip="clear search">
@@ -55,17 +56,17 @@
 
   </div>
 
-
+  <h2>Todos</h2>
 
   <div class="all-todos mb-mt-50">
 
 
     <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos" [cdkDropListConnectedTo]="[doneList]"
-      class="all-todos" (cdkDropListDropped)="drop($event)">
+      class="todos" (cdkDropListDropped)="drop($event)">
 
 
       <div class="todo-container" *ngFor="let todo of todos" cdkDrag>
-        <mat-card class="todo-card" [class.border]="todo.found">
+        <mat-card class="todo-card" [class.border]="todo.found" [class.alarm]="alarm1">
           <mat-card-title><span>{{todo.title}}</span></mat-card-title>
           <mat-card-content>
             <p>{{todo.discription}}</p>
@@ -74,11 +75,12 @@
         </mat-card>
 
         <div class="todo-edit-delete">
-          <button mat-button (click)="editTodo(todo)">
+          <button mat-button (click)="editTodo(todo)" #tooltip="matTooltip" matTooltip="Edit you Todo">
             <mat-icon>edit</mat-icon>
           </button>
 
-          <button class="delete-btn" mat-button (click)="deleteTodo(todo)">
+          <button class="delete-btn" mat-button (click)="deleteTodo(todo)" #tooltip="matTooltip"
+            matTooltip="Delete Todo">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -88,27 +90,28 @@
 
   </div>
 
-  <div class="done-container">
-    <h2>Done</h2>
+  <h2>Done</h2>
 
-    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
-      class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of done" cdkDrag>
+  <div class="done-container" cdkDropList #doneList="cdkDropList" 
+  [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+  (cdkDropListDropped)="drop($event)">
+
+      <div class="todo-container" *ngFor="let item of done" cdkDrag>
 
         <mat-card class="todo-card" [class.border]="todo.found">
-          <mat-card-title><span>{{todo.title}}</span></mat-card-title>
+          <mat-card-title><span>{{item.title}}</span></mat-card-title>
           <mat-card-content>
-            <p>{{todo.discription}}</p>
-            <p *ngIf="todo.date" id="date">{{todo.date}}</p>
+            <p>{{item.discription}}</p>
+            <p *ngIf="item.date" id="date">{{item.date.seconds*1000 | date: 'dd-MM-yyyy'}}</p>
           </mat-card-content>
         </mat-card>
 
-        <div class="todo-edit-delete">
-          <button mat-button (click)="editTodo(todo)">
+        <div class="todo-edit-delete" [class.done]="doneTodo">
+          <!-- <button mat-button (click)="editTodo(todo)">
             <mat-icon>edit</mat-icon>
-          </button>
+          </button> -->
 
-          <button class="delete-btn" mat-button (click)="deleteTodo(todo)">
+          <button class="delete-btn" mat-button (click)="deleteTodo(item)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -119,4 +122,8 @@
   </div>
 
 
-</div>
+<input min="1" max="720" required class="number-input" type="number" matInput [(ngModel)]="alarm"
+  placeholder="Please enter a Number">
+
+<button (click)="setAlarm()">set alarm</button>
+<button (click)="stopAlarm()">cancel alarm</button>

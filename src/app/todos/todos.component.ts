@@ -35,6 +35,14 @@ export class TodosComponent implements OnInit {
 
   date: Date;
 
+  alarm: Number;
+
+  alarm1: boolean = false;
+
+  audio = new Audio('assets/clockAlarm.wav');
+
+  doneTodo: boolean = false;
+
 
   constructor(private firestore: AngularFirestore, public dialog: MatDialog) { }
 
@@ -44,6 +52,8 @@ export class TodosComponent implements OnInit {
       console.log('recieved changes from DB', changes);
       this.todos = changes;
     })
+
+    console.log(this.doneTodo);
   }
 
   addTodo() {
@@ -127,7 +137,29 @@ export class TodosComponent implements OnInit {
       );
     }
 
-    console.log(event);
+    this.doneTodo = true;
+    console.log(this.doneTodo);
+  }
+
+  setAlarm() {
+    let alarm: any = this.alarm
+    window.setTimeout(() => {
+      console.log(alarm, 'second(s) passed!');
+      this.playAudio()
+      this.alarm1 = true;
+    }, alarm * 1000);
+
+    console.log(this.alarm);
+
+  }
+
+  stopAlarm() {
+    this.alarm1 = false;
+    this.audio.pause();
+  }
+
+  playAudio() { 
+    this.audio.play();
   }
 
 }

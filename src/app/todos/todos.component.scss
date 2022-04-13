@@ -63,11 +63,27 @@ mat-label {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    min-height: 300px;
+    border: 2px solid;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    min-height: 300px;
+    border-radius: 6px;
+    align-items: center;
 
     mat-card-title {
 
         margin-bottom: 16px;
     }
+}
+
+.todos {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
 }
 
 textarea {
@@ -105,11 +121,11 @@ textarea {
 .todo-container {
 
     margin: 10px;
-    // background-color: #c2185b;
-    border-radius: 10px;
+    border-radius: 6px;
     position: relative;
     display: flex;
     flex-direction: column;
+    margin: 10px;
 }
 
 .delete-btn {
@@ -154,7 +170,7 @@ input {
     justify-content: space-between;
     color: white;
 
-    p{
+    p {
         margin-top: 0;
         margin-bottom: 0;
         margin-right: 20px;
@@ -168,30 +184,30 @@ input {
     }
 }
 
-.border{
+.border {
 
     border: 10px solid red;
 
 }
 
-.search-field{
+.search-field {
 
     display: flex;
     align-items: center;
     padding-top: 20px;
 }
 
-.show{
+.show {
 
     display: none;
 }
 
-.done-container{
+.done-container {
 
     display: flex;
 
     min-height: 300px;
-    width:100%;
+    width: 100%;
     margin-bottom: 100px;
     color: white;
     border: 2px solid;
@@ -199,6 +215,57 @@ input {
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
+    margin-top: 50px;
+    border-radius: 6px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
+.number-input {
 
+    width: 100px;
+    border: 1px solid;
+    width: 200px;
+    padding: 16px;
+}
+
+.alarm {
+
+    border: 10px solid red;
+    animation: alarm 1s ease-in-out infinite;
+
+}
+
+@keyframes alarm {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+h2 {
+
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    border: 2px solid;
+    width: 80%;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px;
+    background-color: #c2185b;
+}
+
+.done{
+    background-color: green;
+}
+
+.hide{
+
+    display: none;
+}
