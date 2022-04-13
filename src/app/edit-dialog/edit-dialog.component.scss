@@ -46,9 +46,9 @@
     color: white;
 }
 
-.text-input{
+.text-input {
 
-    height:150px;
+    height: 62px;
 }
 
 mat-label {
@@ -57,52 +57,52 @@ mat-label {
 
 }
 
-.all-todos{
+.all-todos {
 
     color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
-    mat-card-title{
+    mat-card-title {
 
         margin-bottom: 16px;
     }
 }
 
-textarea{
+textarea {
     margin-top: 20px !important;
-    resize:none !important;
+    resize: none !important;
 }
 
-.form{
+.form {
 
     display: flex;
     justify-content: center;
 }
 
-.todos-container{
+.todos-container {
 
     display: flex;
     flex-direction: column;
     position: relative;
-    
+
 }
 
-.todo-card{
+.todo-card {
 
     min-width: 300px;
     max-width: 300px;
     min-height: 150px;
     word-break: break-all;
 
-    span{
+    span {
         color: #f44336;
         text-align: center;
     }
 }
 
-.todo-container{
+.todo-container {
 
     margin: 10px;
     background-color: #c2185b;
@@ -112,3 +112,10 @@ textarea{
     flex-direction: column;
 }
 
+#close-btn {
+
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    right: unset;
+}

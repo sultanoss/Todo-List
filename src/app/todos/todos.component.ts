@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/models/todo.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -11,13 +12,26 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
   styleUrls: ['./todos.component.scss']
 })
 export class TodosComponent implements OnInit {
+
+
   [x: string]: any;
 
   todo = new Todo();
 
   todos = [];
 
-  currentTodo:Todo = new Todo()
+  done = [];
+
+
+  currentTodo: Todo = new Todo()
+
+  searchedTodo: string;
+
+  found: boolean;
+
+  notFound: boolean;
+
+  date: Date;
 
 
   constructor(private firestore: AngularFirestore, public dialog: MatDialog) { }
@@ -31,11 +45,9 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo() {
-    console.log(this.todo);
     this.firestore.collection('todos').add(this.todo.toJson()).then((result: any) => {
       console.log('todo', result)
     })
-
 
     this.clearTodo();
   }
@@ -43,8 +55,7 @@ export class TodosComponent implements OnInit {
 
   clearTodo() {
 
-    this.todo.title = '';
-    this.todo.discription = '';
+    this.todo = new Todo;
 
   }
 
@@ -53,16 +64,65 @@ export class TodosComponent implements OnInit {
   }
 
 
-  editTodo(todo:any) {
+  editTodo(todo: any) {
 
     this.firestore.collection('todos').doc(todo['customIdName'])
-    .valueChanges().subscribe((currentUser: any) => {
-      this.currentTodo = new Todo(currentUser);
-      console.log('abgerufene todo', this.currentTodo);
-    });
+      .valueChanges().subscribe((currentUser: any) => {
+        this.currentTodo = new Todo(currentUser);
+        console.log('abgerufene todo', this.currentTodo);
+      });
     const dialog = this.dialog.open(EditDialogComponent);
     dialog.componentInstance.todo = todo;
-    dialog.componentInstance.todo['customIdName'] = this.todo['customIdName'];
   }
-}
 
+  sortByDate() {
+
+    this.todos.sort(function (a, b) {
+      return (a.date) - (b.date);
+    });
+  }
+
+  searchTodo() {
+
+    for (let i = 0; i < this.todos.length; i++) {
+      const element = this.todos[i];
+
+      if (element['title'] == this.searchedTodo) {
+        console.log(element['title']);
+        console.log('found');
+        element.found = true;
+        this.notFound = false;
+      } else {
+        this.notFound = true;
+        element.found = false;
+      }
+    }
+    this.searchedTodo = '';
+  }
+
+  cancelSearch() {
+    this.todo.found = false;
+    this.searchedTodo = '';
+    for (let i = 0; i < this.todos.length; i++) {
+      const element = this.todos[i];
+      element.found = false;
+    }
+    console.log(this.todo.found);
+    console.log(this.todos);
+    this.notFound = false;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
+
+}

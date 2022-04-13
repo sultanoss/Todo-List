@@ -10,16 +10,17 @@ import { Todo } from 'src/models/todo.class';
 })
 export class EditDialogComponent implements OnInit {
 
-  todo:Todo;
+  todo: Todo;
+  constructor(private firestore: AngularFirestore, public dialogRef: MatDialogRef<EditDialogComponent>) { }
 
-  constructor(private firestore: AngularFirestore,public dialogRef: MatDialogRef<EditDialogComponent>) { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
-
+  saveTodo(todo: any) {
+    this.firestore.collection('todos').doc(todo['customIdName']).update(todo);
+    this.dialogRef.close();
   }
 
-  saveTodo(todo:any) {
-    this.firestore.collection('todos').doc(todo['customIdName']).update(todo).then(() => {
-    })
+  closeTodo(){
+    this.dialogRef.close();
   }
 }

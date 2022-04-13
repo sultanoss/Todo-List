@@ -24,7 +24,7 @@
     border: 2px solid white;
     border-radius: 16px;
     padding: 16px;
-    height: 342px;
+    height: 323px;
     width: 500px;
 
     button {
@@ -46,9 +46,9 @@
     color: white;
 }
 
-.text-input{
+.text-input {
 
-    height:150px;
+    height: 62px;
 }
 
 mat-label {
@@ -57,63 +57,142 @@ mat-label {
 
 }
 
-.all-todos{
+.all-todos {
 
     color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
-    mat-card-title{
+    mat-card-title {
 
         margin-bottom: 16px;
     }
 }
 
-textarea{
+textarea {
     margin-top: 20px !important;
-    resize:none !important;
+    resize: none !important;
 }
 
-.form{
+.form {
 
     display: flex;
     justify-content: center;
 }
 
-.todos-container{
+.todos-container {
 
     display: flex;
     flex-direction: column;
     position: relative;
-    
+
 }
 
-.todo-card{
+.todo-card {
 
     min-width: 300px;
     max-width: 300px;
     min-height: 150px;
     word-break: break-all;
 
-    span{
+    span {
         color: #f44336;
         text-align: center;
     }
 }
 
-.todo-container{
+.todo-container {
 
     margin: 10px;
-    background-color: #c2185b;
+    // background-color: #c2185b;
     border-radius: 10px;
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.delete-btn{
+.delete-btn {
 
     width: 20px;
     align-self: end;
 }
+
+.todo-edit-delete {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #c2185b;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+input {
+
+    color: white;
+}
+
+#date {
+    background-color: #f44336;
+    text-align: center;
+    width: 100px;
+    border-radius: 6px;
+    padding: 2px;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sort-menu {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    color: white;
+
+    p{
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 20px;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-right: 20px;
+        padding: 6px;
+        background-color: red;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+}
+
+.border{
+
+    border: 10px solid red;
+
+}
+
+.search-field{
+
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.show{
+
+    display: none;
+}
+
+.done-container{
+
+    display: flex;
+
+    height: 500px;
+    width: 500px;
+    background-color: #fff;
+}
+
+

@@ -25,6 +25,11 @@ import { FirebaseApp, initializeApp,provideFirebaseApp } from '@angular/fire/app
 import { Signup1Component } from './signup1/signup1.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 
 
@@ -53,6 +58,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    DragDropModule,
+    MatTooltipModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     HotToastModule.forRoot(),

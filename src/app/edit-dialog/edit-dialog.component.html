@@ -17,9 +17,21 @@
             placeholder="Please add Todo Discription">
            </textarea>
         </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Todo Date</mat-label>
+          <input required [(ngModel)]="todo.date" name="date"  matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
   
         <button type="submit" (click)="saveTodo(todo)" mat-raised-button color="primary">
           <mat-icon>save</mat-icon>
+        </button>
+
+        <button id="close-btn" type="submit" (click)="closeTodo()" mat-raised-button color="primary">
+          <mat-icon>close</mat-icon>
         </button>
   
       </form>
