@@ -22,6 +22,8 @@ export class TodosComponent implements OnInit {
 
   done = [];
 
+  dropedTodos = JSON.stringify(this.todos)
+
 
   currentTodo: Todo = new Todo()
 
@@ -113,6 +115,7 @@ export class TodosComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
