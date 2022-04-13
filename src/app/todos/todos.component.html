@@ -59,49 +59,40 @@
 
   <div class="all-todos mb-mt-50">
 
-    <div
-    cdkDropList
-    #todoList="cdkDropList"
-    [cdkDropListData]="todos"
-    [cdkDropListConnectedTo]="[doneList]"
-    class="all-todos"
-    (cdkDropListDropped)="drop($event)">
+
+    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos" [cdkDropListConnectedTo]="[doneList]"
+      class="all-todos" (cdkDropListDropped)="drop($event)">
 
 
-    <div class="todo-container" *ngFor="let todo of todos" cdkDrag>
-      <mat-card class="todo-card" [class.border]="todo.found">
-        <mat-card-title><span>{{todo.title}}</span></mat-card-title>
-        <mat-card-content>
-          <p>{{todo.discription}}</p>
-          <p *ngIf="todo.date" id="date">{{todo.date.seconds*1000 | date: 'dd-MM-yyyy'}}</p>
-        </mat-card-content>
-      </mat-card>
+      <div class="todo-container" *ngFor="let todo of todos" cdkDrag>
+        <mat-card class="todo-card" [class.border]="todo.found">
+          <mat-card-title><span>{{todo.title}}</span></mat-card-title>
+          <mat-card-content>
+            <p>{{todo.discription}}</p>
+            <p *ngIf="todo.date" id="date">{{todo.date.seconds*1000 | date: 'dd-MM-yyyy'}}</p>
+          </mat-card-content>
+        </mat-card>
 
-      <div class="todo-edit-delete">
-        <button mat-button (click)="editTodo(todo)">
-          <mat-icon>edit</mat-icon>
-        </button>
+        <div class="todo-edit-delete">
+          <button mat-button (click)="editTodo(todo)">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-        <button class="delete-btn" mat-button (click)="deleteTodo(todo)">
-          <mat-icon>delete</mat-icon>
-        </button>
+          <button class="delete-btn" mat-button (click)="deleteTodo(todo)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </div>
-    </div>
 
-  </div>
+    </div>
 
   </div>
 
   <div class="done-container">
     <h2>Done</h2>
-  
-    <div
-      cdkDropList
-      #doneList="cdkDropList"
-      [cdkDropListData]="done"
-      [cdkDropListConnectedTo]="[todoList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
+
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
+      class="example-list" (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of done" cdkDrag>
 
         <mat-card class="todo-card" [class.border]="todo.found">
@@ -111,22 +102,21 @@
             <p *ngIf="todo.date" id="date">{{todo.date}}</p>
           </mat-card-content>
         </mat-card>
-  
+
         <div class="todo-edit-delete">
           <button mat-button (click)="editTodo(todo)">
             <mat-icon>edit</mat-icon>
           </button>
-  
+
           <button class="delete-btn" mat-button (click)="deleteTodo(todo)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
-        
-        
+
+
       </div>
     </div>
   </div>
-  
+
 
 </div>
-

@@ -190,9 +190,15 @@ input {
 
     display: flex;
 
-    height: 500px;
-    width: 500px;
-    background-color: #fff;
+    min-height: 300px;
+    width:100%;
+    margin-bottom: 100px;
+    color: white;
+    border: 2px solid;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
 }
 
 

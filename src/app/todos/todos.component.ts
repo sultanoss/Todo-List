@@ -126,6 +126,8 @@ export class TodosComponent implements OnInit {
         event.currentIndex,
       );
     }
+
+    console.log(event);
   }
 
 }
