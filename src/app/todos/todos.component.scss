@@ -63,12 +63,12 @@ mat-label {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    min-height: 300px;
     border: 2px solid;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    min-width: 300px;
     min-height: 300px;
+    max-width: 90%;
     border-radius: 6px;
     align-items: center;
 
@@ -83,6 +83,8 @@ mat-label {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    min-width: 300px;
+    min-height: 150px;
 
 }
 
@@ -107,7 +109,7 @@ textarea {
 
 .todo-card {
 
-    min-width: 300px;
+    min-width: 370px;
     max-width: 300px;
     min-height: 150px;
     word-break: break-all;
@@ -141,6 +143,8 @@ textarea {
     background-color: #c2185b;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
+    flex-direction: column;
+    align-items: center;
 }
 
 input {
@@ -207,11 +211,12 @@ input {
     display: flex;
 
     min-height: 300px;
-    width: 100%;
+    min-width: 300px;
+    max-width: 90%;
     margin-bottom: 100px;
     color: white;
     border: 2px solid;
-    width: 90%;
+    ;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -223,10 +228,14 @@ input {
 
 .number-input {
 
-    width: 100px;
     border: 1px solid;
-    width: 200px;
+    width: 50px;
     padding: 16px;
+    color: black;
+    height: 5px;
+    margin: 5px;
+    outline: none;
+    border-radius: 6px;
 }
 
 .alarm {
@@ -261,11 +270,29 @@ h2 {
     background-color: #c2185b;
 }
 
-.done{
+.done {
     background-color: green;
 }
 
-.hide{
+.hide {
 
     display: none;
+}
+
+.alarm-btn {
+
+    background: transparent;
+    outline: none;
+    width: 100px;
+    border: 2px solid white;
+    padding: 6px;
+    margin: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.alam-discription {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
 }

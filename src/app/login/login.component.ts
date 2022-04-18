@@ -13,6 +13,7 @@ import { AuthenticationService } from '../services/authentification.service';
 })
 export class LoginComponent implements OnInit {
 
+
   loginForm = new FormGroup({
 
     email: new FormControl('',[Validators.required,Validators.email]),
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     private toast:HotToastService) { }
 
   ngOnInit(): void {
+
   }
 
   get email(){

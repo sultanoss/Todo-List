@@ -66,6 +66,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     provideAuth(() => getAuth()),
     HotToastModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

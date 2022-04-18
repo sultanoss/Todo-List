@@ -22,9 +22,6 @@ export class TodosComponent implements OnInit {
 
   done = [];
 
-  dropedTodos = JSON.stringify(this.todos)
-
-
   currentTodo: Todo = new Todo()
 
   searchedTodo: string;
@@ -35,9 +32,11 @@ export class TodosComponent implements OnInit {
 
   date: Date;
 
-  alarm: Number;
+  alarm: number;
 
   alarm1: boolean = false;
+
+  alarmActive: boolean = false;
 
   audio = new Audio('assets/clockAlarm.wav');
 
@@ -104,6 +103,7 @@ export class TodosComponent implements OnInit {
         console.log('found');
         element.found = true;
         this.notFound = false;
+        break;
       } else {
         this.notFound = true;
         element.found = false;
@@ -113,6 +113,7 @@ export class TodosComponent implements OnInit {
   }
 
   cancelSearch() {
+    console.log("CANCEL SEARCH WORK!");
     this.todo.found = false;
     this.searchedTodo = '';
     for (let i = 0; i < this.todos.length; i++) {
@@ -138,28 +139,35 @@ export class TodosComponent implements OnInit {
     }
 
     this.doneTodo = true;
-    console.log(this.doneTodo);
+    console.log('doneArray', this.done);
   }
 
-  setAlarm() {
-    let alarm: any = this.alarm
+  setAlarm(todo: any) {
+    let alarm: any = todo.alarm
     window.setTimeout(() => {
       console.log(alarm, 'second(s) passed!');
       this.playAudio()
-      this.alarm1 = true;
+      todo.alarm1 = true;
     }, alarm * 1000);
 
     console.log(this.alarm);
-
+    todo.alarmActive = true;
   }
 
-  stopAlarm() {
-    this.alarm1 = false;
+  stopAlarm(todo: any) {
+    todo.alarm1 = false;
+    todo.alarmActive = false;
     this.audio.pause();
+    todo.alarm = '';
   }
 
-  playAudio() { 
+  playAudio() {
     this.audio.play();
+  }
+
+  deleteDoneTodo(item: any) {
+
+    this.done.splice(item, 1);
   }
 
 }

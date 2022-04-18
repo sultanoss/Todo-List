@@ -1,21 +1,20 @@
 <mat-toolbar class="toolbar" color="primary">
 
-    <div class="toolbar-menu-btn"> 
+    <img *ngIf="router.url == '/'" src="assets/img/logoTodo.png">
+
+    <div class="toolbar-menu-btn">
         <button *ngIf="authService.currentUser$ | async as user" mat-icon-button>
             <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>
         </button>
-    
-        <span>My TODO App</span>
-        <span class="example-spacer"></span>
     </div>
-  
 
-    <ng-container *ngIf="authService.currentUser$ | async as user";loginButton>
+
+    <ng-container *ngIf="authService.currentUser$ | async as user" ;loginButton>
         <button mat-button (click)="logout()">
-          <mat-icon>account_circle</mat-icon>
-          Logout
+            <mat-icon>account_circle</mat-icon>
+            Logout
         </button>
-      </ng-container>
+    </ng-container>
 
 </mat-toolbar>
 
