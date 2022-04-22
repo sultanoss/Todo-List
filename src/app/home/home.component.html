@@ -1,5 +1,30 @@
-<div class=" main-content center mb-mt-50">
+<div class=" main-content  mb-mt-50" *ngIf="route.url != '/'" >
     <h1>My ToDo App</h1>
+
+    <div class="help" >
+        <h2>Create your Todo</h2>
+        <span>Create your Todo by adding Title,Description and Date.</span>
+    </div>
+
+    <div class="help">
+        <h2>Edit your Todo</h2>
+        <span>Edit your Todo by clicking on the Plus Button.</span>
+    </div>
+
+    <div class="help">
+        <h2>Search your Todo</h2>
+        <span>Write in the search field your Title and click the search button.</span>
+    </div>
+
+    <div class="help">
+        <h2>Set Atarm</h2>
+        <span>Add your Time and set Alarm ( 1 = 1 Minute ).</span>
+    </div>
+
+    <div class="help">
+        <h2>Drag and Drop your Todo</h2>
+        <span>Drag your Todo Card to the Done Field or drag it back to the Todo field.</span>
+    </div>
 </div>
 
 <app-login *ngIf="route.url != '/home'"></app-login>

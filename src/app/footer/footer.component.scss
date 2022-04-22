@@ -1,6 +1,24 @@
 .footer-content{
-    height: 150px;
+    height: 134px;
     width: 100%;
     background-color:#c2185b;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 18px;
+}
+.footer-link{
+
+    margin-right: 20px;
+
+    a{
+        color: #303030;
+        text-decoration: none;
+    }
+
+    span{
+
+        color: #303030;
+    }
 }

@@ -10,7 +10,7 @@ import { AuthenticationService } from '../services/authentification.service';
 export class MenuComponent implements OnInit {
 
 
-  constructor(public authService:AuthenticationService,public router: Router) { }
+  constructor(public authService: AuthenticationService, public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +20,6 @@ export class MenuComponent implements OnInit {
     this.authService.logout().subscribe(() => {
       this.router.navigate(['/']);
     })
-
   }
 
 }

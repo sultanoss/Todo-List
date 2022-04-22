@@ -2,6 +2,9 @@
 
     <img *ngIf="router.url == '/'" src="assets/img/logoTodo.png">
 
+    <a class="home-btn" *ngIf="!authService.currentUser &&
+     (router.url == '/legalnotice' || router.url == '/imprint')" routerLink="/">Back</a>
+
     <div class="toolbar-menu-btn">
         <button *ngIf="authService.currentUser$ | async as user" mat-icon-button>
             <mat-icon [matMenuTriggerFor]="menu">menu</mat-icon>

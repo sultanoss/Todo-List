@@ -60,11 +60,8 @@
 
   <div class="all-todos mb-mt-50">
 
-
-
     <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todos" [cdkDropListConnectedTo]="[doneList]"
       class="todos" (cdkDropListDropped)="drop($event)">
-
 
       <div class="todo-container" *ngFor="let todo of todos" cdkDrag>
         <mat-card class="todo-card" [class.border]="todo.found" [class.alarm]="todo.alarm1">
@@ -113,7 +110,7 @@
     <div class="todo-container" *ngFor="let item of done" cdkDrag>
 
 
-      <mat-card class="todo-card" [class.border]="todo.found">
+      <mat-card class="todo-card ">
         <mat-card-title><span>{{item.title}}</span></mat-card-title>
         <mat-card-content>
           <p>{{item.discription}}</p>
@@ -121,8 +118,8 @@
         </mat-card-content>
       </mat-card>
 
-      <div class="todo-edit-delete" [class.done]="doneTodo">
-        <button class="delete-btn" mat-button (click)="deleteDoneTodo(item)">
+      <div class="todo-edit-delete  done" [class.done]="doneTodo">
+        <button class="delete-btn" mat-button (click)="deleteTodo(item)">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
@@ -130,4 +127,5 @@
 
     </div>
   </div>
+
 </div>

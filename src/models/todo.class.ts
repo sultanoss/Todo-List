@@ -7,6 +7,9 @@ export class Todo {
     alarm1:boolean;
     alarm:number;
     alarmActive:boolean;
+    list:string;
+    customIdName:string;
+    author:string;
 
     constructor(obj?: any) {
 
@@ -17,6 +20,9 @@ export class Todo {
         this.alarm1 = obj ? obj.alarm1:false;
         this.alarm = obj ? obj.alarm:false;
         this.alarmActive = obj ? obj.alarmActive:false;
+        this.list = obj? obj.list:'todo';
+        this.customIdName = obj? obj.customIdName:'';
+        this.author = obj? obj.author:'';
     }
 
     public toJson() {
@@ -27,7 +33,9 @@ export class Todo {
             found:this.found,
             alarm1:this.alarm1,
             alarm:this.alarm,
-            alarmActive:this.alarmActive
+            alarmActive:this.alarmActive,
+            list:this.list,
+            author:this.author
         }
     }
 }

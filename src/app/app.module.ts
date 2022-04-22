@@ -29,6 +29,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ImprintComponent } from './imprint/imprint.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 
 
@@ -43,6 +45,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     LoginComponent,
     Signup1Component,
     EditDialogComponent,
+    ImprintComponent,
+    LegalNoticeComponent,
   ],
   imports: [
     BrowserModule,

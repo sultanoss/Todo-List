@@ -3,7 +3,10 @@ import { Todo } from 'src/models/todo.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { AuthenticationService } from '../services/authentification.service';
+import * as firebase from 'firebase/compat';
+
 
 
 @Component({
@@ -22,7 +25,7 @@ export class TodosComponent implements OnInit {
 
   done = [];
 
-  currentTodo: Todo = new Todo()
+  currentTodo: Todo = new Todo();
 
   searchedTodo: string;
 
@@ -40,24 +43,35 @@ export class TodosComponent implements OnInit {
 
   audio = new Audio('assets/clockAlarm.wav');
 
-  doneTodo: boolean = false;
+  doneTodo: boolean;
+
+  userId: string;
 
 
-  constructor(private firestore: AngularFirestore, public dialog: MatDialog) { }
+  constructor(
+     private firestore: AngularFirestore,
+      public dialog: MatDialog, private auth: AuthenticationService) { 
+        this.userId = this.auth.currentUser.uid
+      }
 
   ngOnInit(): void {
 
-    this.firestore.collection('todos').valueChanges({ idField: 'customIdName' }).subscribe((changes: any) => {
-      console.log('recieved changes from DB', changes);
-      this.todos = changes;
-    })
-
-    console.log(this.doneTodo);
+    this.firestore.collection('todos', ref => ref.where('author', '==', this.userId))
+    // this.firestore.collection('todos')
+      .valueChanges({ idField: 'customIdName' })
+      .subscribe((changes: any) => {
+        console.log('recieved new  changes from DB', changes);
+        this.todos = changes.filter(t => t.list == 'todo').map(t => new Todo(t));
+        this.done = changes.filter(t => t.list == 'done').map(t => new Todo(t));
+      })
   }
 
+
   addTodo() {
+    this.todo.author = this.auth.currentUser.uid;
     this.firestore.collection('todos').add(this.todo.toJson()).then((result: any) => {
-      console.log('todo', result)
+
+      console.log(this.auth.currentUser.uid);
     })
 
     this.clearTodo();
@@ -66,12 +80,14 @@ export class TodosComponent implements OnInit {
 
   clearTodo() {
 
-    this.todo = new Todo;
+    this.todo = new Todo();
 
   }
 
+
   deleteTodo(todo: any) {
     this.firestore.collection('todos').doc(todo['customIdName']).delete();
+    this.done.splice(todo, 1);
   }
 
 
@@ -80,11 +96,11 @@ export class TodosComponent implements OnInit {
     this.firestore.collection('todos').doc(todo['customIdName'])
       .valueChanges().subscribe((currentUser: any) => {
         this.currentTodo = new Todo(currentUser);
-        console.log('abgerufene todo', this.currentTodo);
       });
     const dialog = this.dialog.open(EditDialogComponent);
     dialog.componentInstance.todo = todo;
   }
+
 
   sortByDate() {
 
@@ -92,6 +108,7 @@ export class TodosComponent implements OnInit {
       return (a.date) - (b.date);
     });
   }
+
 
   searchTodo() {
 
@@ -112,6 +129,7 @@ export class TodosComponent implements OnInit {
     this.searchedTodo = '';
   }
 
+
   cancelSearch() {
     console.log("CANCEL SEARCH WORK!");
     this.todo.found = false;
@@ -125,8 +143,10 @@ export class TodosComponent implements OnInit {
     this.notFound = false;
   }
 
-  drop(event: CdkDragDrop<string[]>) {
 
+
+  drop(event: CdkDragDrop<string[]>) {
+    console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -136,16 +156,20 @@ export class TodosComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
-    }
 
+      const todoId = event.container.data[0]['customIdName'];
+      const todoList = event.container.data[0]['list'];
+      this.firestore.collection('todos').doc(todoId).update({
+        list: todoList == 'done' ? 'todo' : 'done'
+      })
+    }
     this.doneTodo = true;
-    console.log('doneArray', this.done);
   }
+
 
   setAlarm(todo: any) {
     let alarm: any = todo.alarm
     window.setTimeout(() => {
-      console.log(alarm, 'second(s) passed!');
       this.playAudio()
       todo.alarm1 = true;
     }, alarm * 1000);
@@ -154,6 +178,7 @@ export class TodosComponent implements OnInit {
     todo.alarmActive = true;
   }
 
+
   stopAlarm(todo: any) {
     todo.alarm1 = false;
     todo.alarmActive = false;
@@ -161,13 +186,9 @@ export class TodosComponent implements OnInit {
     todo.alarm = '';
   }
 
+
   playAudio() {
     this.audio.play();
-  }
-
-  deleteDoneTodo(item: any) {
-
-    this.done.splice(item, 1);
   }
 
 }
