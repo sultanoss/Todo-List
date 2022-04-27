@@ -6,6 +6,7 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AuthenticationService } from '../services/authentification.service';
 import * as firebase from 'firebase/compat';
+import { Auth, authState } from '@angular/fire/auth';
 
 
 
@@ -50,20 +51,32 @@ export class TodosComponent implements OnInit {
 
   constructor(
      private firestore: AngularFirestore,
-      public dialog: MatDialog, private auth: AuthenticationService) { 
-        this.userId = this.auth.currentUser.uid
+      public dialog: MatDialog, private auth: Auth) {
+        // this.userId = this.auth.currentUser.uid
       }
 
   ngOnInit(): void {
+    // this.userId = this.auth.currentUser.uid;
+    this.auth.onAuthStateChanged((user)=>{ // check user if loged in
+      if(user)
+      this.userId = this.auth.currentUser.uid;
+      this.firestore.collection('todos', ref => ref.where('author', '==', this.userId))
+      // this.firestore.collection('todos')
+        .valueChanges({ idField: 'customIdName' })
+        .subscribe((changes: any) => {
+          console.log('recieved new  changes from DB', changes);
+          this.todos = changes.filter(t => t.list == 'todo').map(t => new Todo(t));
+          this.done = changes.filter(t => t.list == 'done').map(t => new Todo(t));
+        })
 
-    this.firestore.collection('todos', ref => ref.where('author', '==', this.userId))
-    // this.firestore.collection('todos')
-      .valueChanges({ idField: 'customIdName' })
-      .subscribe((changes: any) => {
-        console.log('recieved new  changes from DB', changes);
-        this.todos = changes.filter(t => t.list == 'todo').map(t => new Todo(t));
-        this.done = changes.filter(t => t.list == 'done').map(t => new Todo(t));
-      })
+        // else {
+
+        //   return alert('you are not loged in !!')
+        // }
+
+  })
+
+
   }
 
 

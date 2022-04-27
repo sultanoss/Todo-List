@@ -12,7 +12,7 @@ export const environment = {
     authDomain: 'todo-list-aa856.firebaseapp.com',
     messagingSenderId: '809385998777',
   },
-  production: false
+  production: true
 };
 
 /*

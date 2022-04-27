@@ -7,14 +7,14 @@ import { from, switchMap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  lastNotifiedUid(arg0: string, arg1: string, lastNotifiedUid: any): import("@angular/fire/compat/firestore").Query<import("firebase/compat").default.firestore.DocumentData> {
-    throw new Error('Method not implemented.');
-  }
+  // lastNotifiedUid(arg0: string, arg1: string, lastNotifiedUid: any): import("@angular/fire/compat/firestore").Query<import("firebase/compat").default.firestore.DocumentData> {
+  //   throw new Error('Method not implemented.');
+  // }
 
   currentUser$ = authState(this.auth) // This is for switch to logout if user logged in
   currentUser: any;
   constructor(private auth:Auth) {
-    this.auth.onAuthStateChanged((user)=>{ // check user if loged in 
+    this.auth.onAuthStateChanged((user)=>{ // check user if loged in
         this.currentUser = user;
     })
    }
