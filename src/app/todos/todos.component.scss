@@ -27,6 +27,18 @@
   height: 323px;
   width: 500px;
 
+  @media(max-width:580px) {
+    width: 400px;
+  }
+
+  @media(max-width:480px) {
+    width: 300px;
+  }
+
+  @media(max-width:370px) {
+    width: 250px;
+  }
+
   button {
 
     position: absolute;
@@ -72,6 +84,10 @@ mat-label {
   border-radius: 6px;
   align-items: center;
 
+  @media(max-width:420px){
+    min-width: 260px;
+  }
+
   mat-card-title {
 
     margin-bottom: 16px;
@@ -86,6 +102,9 @@ mat-label {
   min-width: 300px;
   min-height: 150px;
 
+  @media(max-width:370px) {
+    min-width: 280px;
+  }
 }
 
 textarea {
@@ -113,6 +132,18 @@ textarea {
   max-width: 300px;
   min-height: 150px;
   word-break: break-all;
+
+  @media(max-width:480px) {
+    min-width: 300px;
+  }
+
+  @media(max-width:420px) {
+    min-width: 250px;
+  }
+
+  @media(max-width:370px) {
+    min-width: 220px;
+  }
 
   span {
     color: #f44336;
@@ -174,6 +205,24 @@ input {
   justify-content: space-between;
   color: white;
 
+  @media(max-width:1350px) {
+    width: 500px;
+  }
+
+  @media(max-width:850px) {
+    width: 400px;
+  }
+
+  @media(max-width:480px) {
+    width: 300px;
+    flex-direction: column;
+  }
+
+  @media(max-width:480px) {
+    width: 250px;
+    flex-direction: column;
+  }
+
   p {
     margin-top: 0;
     margin-bottom: 0;
@@ -199,6 +248,10 @@ input {
   display: flex;
   align-items: center;
   padding-top: 20px;
+
+  @media(max-width:480px) {
+    flex-direction: column;
+  }
 }
 
 .show {
@@ -216,7 +269,6 @@ input {
   margin-bottom: 100px;
   color: white;
   border: 2px solid;
-  ;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
@@ -224,6 +276,10 @@ input {
   border-radius: 6px;
   align-items: center;
   flex-wrap: wrap;
+
+  @media(max-width:370px) {
+    min-width: 280px;
+  }
 }
 
 .number-input {
@@ -277,6 +333,14 @@ h2 {
 .hide {
 
   display: none;
+}
+
+@media(max-width:480px) {
+  .alarm-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .alarm-btn {

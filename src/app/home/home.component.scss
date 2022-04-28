@@ -15,5 +15,10 @@
 
     span {
         font-size: 18px;
+
+        @media(max-width: 650px){
+          max-width: 280px;
+          text-align: center;
+        }
     }
 }
