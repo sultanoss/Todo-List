@@ -185,9 +185,8 @@ export class TodosComponent implements OnInit {
     window.setTimeout(() => {
       this.playAudio()
       todo.alarm1 = true;
-    }, alarm * 1000);
+    }, alarm * 60000);
 
-    console.log(this.alarm);
     todo.alarmActive = true;
   }
 
