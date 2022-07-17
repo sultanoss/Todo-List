@@ -71,7 +71,7 @@ export class Signup1Component implements OnInit {
         error:({ message }) => `${ message }`
       })
     ).subscribe(()=>{
-    this.route.navigate(['/'])
+    this.route.navigate(['/home'])
     })
   }
 
